@@ -1,6 +1,40 @@
 let shopData=[];
 
+const login =
+document.getElementById("login");
 
+const register =
+document.getElementById("register");
+
+const home =
+document.getElementById("home");
+
+const shop =
+document.getElementById("shop");
+
+const worldCreate =
+document.getElementById("worldCreate");
+
+const items =
+document.getElementById("items");
+
+const shopCoins =
+document.getElementById("shopCoins");
+
+const nicknameInput =
+document.getElementById("nicknameInput");
+
+const nickname =
+document.getElementById("nickname");
+
+const icon =
+document.getElementById("icon");
+
+const userid =
+document.getElementById("userid");
+
+const coins =
+document.getElementById("coins");
 
 function accounts(){
 
