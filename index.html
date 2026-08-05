@@ -203,7 +203,52 @@ placeholder="パスワード">
 <span id="coins"></span>
 </p>
 
+<div class="card">
 
+<h2 id="playerName"></h2>
+
+<img id="playerIcon"
+width="80">
+
+
+<p>
+ニックネーム
+</p>
+
+<input id="nicknameInput">
+
+<button onclick="changeNickname()">
+変更
+</button>
+
+
+</div>
+
+
+<button onclick="openShop()">
+🛒 クリスタルショップ
+</button>
+
+<div id="icons">
+
+<button onclick="changeIcon('😀')">
+😀
+</button>
+
+<button onclick="changeIcon('🤖')">
+🤖
+</button>
+
+<button onclick="changeIcon('👾')">
+👾
+</button>
+
+<button onclick="changeIcon('💎')">
+💎
+</button>
+
+</div>
+    
 </div>
 
 
@@ -516,6 +561,85 @@ loginPage.classList.remove("hidden");
 
 }
 
+function changeIcon(icon){
+
+let user =
+JSON.parse(
+localStorage.getItem(
+"BitWorldCurrentUser"
+)
+);
+
+
+user.icon=icon;
+
+
+updateAccount(user);
+
+
+playerIcon.textContent=icon;
+
+}
+
+function changeNickname(){
+
+let user =
+JSON.parse(
+localStorage.getItem(
+"BitWorldCurrentUser"
+)
+);
+
+
+let name =
+document.getElementById(
+"nicknameInput"
+).value;
+
+
+if(name==""){
+
+alert("入力してください");
+return;
+
+}
+
+
+user.nickname=name;
+
+
+updateAccount(user);
+
+
+alert(
+"ニックネーム変更しました"
+);
+
+}
+
+function updateAccount(user){
+
+let accounts=getAccounts();
+
+
+let index =
+accounts.findIndex(
+a=>a.id===user.id
+);
+
+
+accounts[index]=user;
+
+
+saveAccounts(accounts);
+
+
+localStorage.setItem(
+"BitWorldCurrentUser",
+JSON.stringify(user)
+);
+
+}
 
 
 </script>
