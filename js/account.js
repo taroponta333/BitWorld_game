@@ -813,7 +813,34 @@ function deleteWorld(worldID){
 
 }
 
+/*=========================================
+起動
+=========================================*/
 
+window.addEventListener("load", () => {
+
+    const loading =
+    document.getElementById("loadingScreen");
+
+    setTimeout(() => {
+
+        loading.classList.add("hidden");
+
+        if(getCurrentUser()){
+
+            loadProfile();
+
+        }else{
+
+            showLogin();
+
+        }
+
+    },1000);
+
+});
+
+console.log("✅ account.js Ready");
 /*=========================================
 統計
 =========================================*/
