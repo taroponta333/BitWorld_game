@@ -1,117 +1,14 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>BitWorld Account</title>
+<title>BitWorld</title>
 
-<style>
-
-body{
-    margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    background:#08111f;
-    color:white;
-
-    font-family:sans-serif;
-}
-
-
-.box{
-
-    width:350px;
-
-    background:#172554;
-
-    padding:30px;
-
-    border-radius:20px;
-
-    box-shadow:0 0 30px #000;
-
-    text-align:center;
-
-}
-
-
-h1{
-
-    color:#38bdf8;
-
-}
-
-
-input{
-
-    width:90%;
-
-    padding:12px;
-
-    margin:8px;
-
-    border-radius:10px;
-
-    border:none;
-
-    font-size:16px;
-
-}
-
-
-button{
-
-    width:95%;
-
-    padding:12px;
-
-    margin:8px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:#2563eb;
-
-    color:white;
-
-    font-size:16px;
-
-    cursor:pointer;
-
-}
-
-
-button:hover{
-
-    background:#1d4ed8;
-
-}
-
-
-.hidden{
-
-    display:none;
-
-}
-
-
-.card{
-
-    background:#0f172a;
-
-    padding:15px;
-
-    border-radius:15px;
-
-}
-
-
-</style>
+<link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -119,18 +16,11 @@ button:hover{
 <body>
 
 
-<div class="box" id="loginPage">
+<div class="box" id="login">
 
 <h1>🌍 BitWorld</h1>
 
-<p>
-BitWorld ID Login
-</p>
-
-
-<input id="loginUser"
-placeholder="ユーザー名">
-
+<input id="loginUser" placeholder="ユーザー名">
 
 <input id="loginPass"
 type="password"
@@ -142,8 +32,8 @@ placeholder="パスワード">
 </button>
 
 
-<button onclick="showRegister()">
-新規アカウント作成
+<button onclick="openRegister()">
+新規登録
 </button>
 
 
@@ -151,11 +41,10 @@ placeholder="パスワード">
 
 
 
+<div class="box hidden" id="register">
 
-<div class="box hidden" id="registerPage">
 
-
-<h1>✨ Create ID</h1>
+<h1>✨ BitWorld ID作成</h1>
 
 
 <input id="newUser"
@@ -168,7 +57,7 @@ placeholder="パスワード">
 
 
 <button onclick="register()">
-アカウント作成
+作成
 </button>
 
 
@@ -182,54 +71,40 @@ placeholder="パスワード">
 
 
 
-
-<div class="box hidden" id="homePage">
+<div class="box hidden" id="home">
 
 
 <h1>🌎 BitWorld</h1>
 
 
-<div class="card">
+<div class="profile">
 
 
-<h2 id="playerName"></h2>
+<div id="icon">
+😀
+</div>
 
 
-<p id="playerID"></p>
+<h2 id="nickname">
+</h2>
 
 
-<p>
-💎 クリスタルコイン：
-<span id="coins"></span>
-</p>
-
-<div class="card">
-
-<h2 id="playerName"></h2>
-
-<img id="playerIcon"
-width="80">
+<p id="userid"></p>
 
 
 <p>
-ニックネーム
+💎 <span id="coins"></span>
 </p>
-
-<input id="nicknameInput">
-
-<button onclick="changeNickname()">
-変更
-</button>
 
 
 </div>
 
 
-<button onclick="openShop()">
-🛒 クリスタルショップ
-</button>
 
-<div id="icons">
+<h3>
+アイコン変更
+</h3>
+
 
 <button onclick="changeIcon('😀')">
 😀
@@ -239,17 +114,26 @@ width="80">
 🤖
 </button>
 
-<button onclick="changeIcon('👾')">
-👾
-</button>
-
 <button onclick="changeIcon('💎')">
 💎
 </button>
 
-</div>
-    
-</div>
+
+
+<input id="nicknameInput"
+placeholder="新しい名前">
+
+
+<button onclick="changeNickname()">
+ニックネーム変更
+</button>
+
+
+
+<button onclick="openShop()">
+🛒 クリスタルショップ
+</button>
+
 
 
 <button onclick="logout()">
@@ -263,387 +147,32 @@ width="80">
 
 
 
-<script>
+<div class="box hidden" id="shop">
 
 
-// ----------------------
-// データ取得
-// ----------------------
+<h1>🛒 Shop</h1>
 
-function getAccounts(){
 
-    return JSON.parse(
-        localStorage.getItem(
-            "BitWorldAccounts"
-        )
-    ) || [];
+<h3>
+💎 <span id="shopCoins"></span>
+</h3>
 
-}
 
+<div id="items"></div>
 
 
-function saveAccounts(data){
+<button onclick="closeShop()">
+戻る
+</button>
 
-    localStorage.setItem(
-        "BitWorldAccounts",
-        JSON.stringify(data)
-    );
 
-}
+</div>
 
 
 
-// ----------------------
-// SHA-256
-// ----------------------
-
-async function hashPassword(text){
-
-    const data =
-    new TextEncoder()
-    .encode(text);
-
-
-    const hash =
-    await crypto.subtle.digest(
-        "SHA-256",
-        data
-    );
-
-
-    return Array.from(
-        new Uint8Array(hash)
-    )
-    .map(
-        b=>b.toString(16)
-        .padStart(2,"0")
-    )
-    .join("");
-
-}
-
-
-
-// ----------------------
-// ID生成
-// ----------------------
-
-function createID(){
-
-    return "BW-"+
-    Math.floor(
-        Math.random()*900000+100000
-    );
-
-}
-
-
-
-// ----------------------
-// 登録
-// ----------------------
-
-async function register(){
-
-
-let user=
-document.getElementById("newUser").value;
-
-
-let pass=
-document.getElementById("newPass").value;
-
-
-
-if(!user || !pass){
-
-    alert("入力してください");
-
-    return;
-
-}
-
-
-
-let accounts=getAccounts();
-
-
-
-if(accounts.some(
-a=>a.username===user
-)){
-
-    alert("その名前は使用されています");
-
-    return;
-
-}
-
-
-
-let account={
-
-
-id:createID(),
-
-username:user,
-
-
-passwordHash:
-await hashPassword(pass),
-
-
-coins:100,
-
-
-worlds:[],
-
-
-inventory:[]
-
-
-};
-
-
-
-accounts.push(account);
-
-
-saveAccounts(accounts);
-
-
-
-alert(
-"BitWorld IDを作成しました！"
-);
-
-
-backLogin();
-
-
-}
-
-
-
-
-// ----------------------
-// ログイン
-// ----------------------
-
-async function login(){
-
-
-let user=
-document.getElementById("loginUser").value;
-
-
-let pass=
-document.getElementById("loginPass").value;
-
-
-
-let hash=
-await hashPassword(pass);
-
-
-
-let accounts=getAccounts();
-
-
-
-let account=
-accounts.find(
-a=>
-a.username===user
-&&
-a.passwordHash===hash
-);
-
-
-
-if(!account){
-
-alert(
-"ユーザー名またはパスワードが違います"
-);
-
-return;
-
-}
-
-
-
-localStorage.setItem(
-"BitWorldCurrentUser",
-JSON.stringify(account)
-);
-
-
-
-openHome(account);
-
-
-
-}
-
-
-
-// ----------------------
-// ホーム
-// ----------------------
-
-function openHome(account){
-
-
-loginPage.classList.add("hidden");
-
-registerPage.classList.add("hidden");
-
-
-homePage.classList.remove("hidden");
-
-
-playerName.textContent=
-"👤 "+account.username;
-
-
-playerID.textContent=
-"ID : "+account.id;
-
-
-coins.textContent=
-account.coins;
-
-
-
-}
-
-
-
-// ----------------------
-// 画面切替
-// ----------------------
-
-function showRegister(){
-
-loginPage.classList.add("hidden");
-
-registerPage.classList.remove("hidden");
-
-}
-
-
-
-function backLogin(){
-
-registerPage.classList.add("hidden");
-
-loginPage.classList.remove("hidden");
-
-}
-
-
-
-// ----------------------
-// ログアウト
-// ----------------------
-
-function logout(){
-
-localStorage.removeItem(
-"BitWorldCurrentUser"
-);
-
-
-homePage.classList.add("hidden");
-
-loginPage.classList.remove("hidden");
-
-}
-
-function changeIcon(icon){
-
-let user =
-JSON.parse(
-localStorage.getItem(
-"BitWorldCurrentUser"
-)
-);
-
-
-user.icon=icon;
-
-
-updateAccount(user);
-
-
-playerIcon.textContent=icon;
-
-}
-
-function changeNickname(){
-
-let user =
-JSON.parse(
-localStorage.getItem(
-"BitWorldCurrentUser"
-)
-);
-
-
-let name =
-document.getElementById(
-"nicknameInput"
-).value;
-
-
-if(name==""){
-
-alert("入力してください");
-return;
-
-}
-
-
-user.nickname=name;
-
-
-updateAccount(user);
-
-
-alert(
-"ニックネーム変更しました"
-);
-
-}
-
-function updateAccount(user){
-
-let accounts=getAccounts();
-
-
-let index =
-accounts.findIndex(
-a=>a.id===user.id
-);
-
-
-accounts[index]=user;
-
-
-saveAccounts(accounts);
-
-
-localStorage.setItem(
-"BitWorldCurrentUser",
-JSON.stringify(user)
-);
-
-}
-
-
-</script>
+<script src="script.js"></script>
 
 
 </body>
+
 </html>
