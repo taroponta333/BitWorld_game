@@ -1,178 +1,383 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>BitWorld</title>
 
-<title>BitWorld</title>
-
-<link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
+<!-- ===========================
+起動画面
+=========================== -->
 
-<div class="box" id="login">
+<div id="loadingScreen" class="screen">
 
-<h1>🌍 BitWorld</h1>
+    <h1 class="logo">🌍 BitWorld</h1>
 
-<input id="loginUser" placeholder="ユーザー名">
+    <p>Loading...</p>
 
-<input id="loginPass"
-type="password"
-placeholder="パスワード">
+    <div class="loadingBar">
+        <div id="loadingProgress"></div>
+    </div>
 
+</div>
 
-<button onclick="login()">
-ログイン
-</button>
+<!-- ===========================
+ログイン画面
+=========================== -->
 
+<div id="loginScreen" class="screen hidden">
 
-<button onclick="openRegister()">
+    <h1>BitWorld</h1>
+
+    <input
+        id="loginUsername"
+        type="text"
+        placeholder="ユーザー名">
+
+    <input
+        id="loginPassword"
+        type="password"
+        placeholder="パスワード">
+
+    <button id="loginButton">
+        ログイン
+    </button>
+
+    <button id="openRegisterButton">
+        新規登録
+    </button>
+
+</div>
+
+<!-- ===========================
 新規登録
-</button>
+=========================== -->
 
+<div id="registerScreen"
+     class="screen hidden">
 
-</div>
+    <h1>Create Account</h1>
 
+    <input
+        id="registerUsername"
+        type="text"
+        placeholder="ユーザー名">
 
+    <input
+        id="registerPassword"
+        type="password"
+        placeholder="パスワード">
 
-<div class="box hidden" id="register">
+    <button id="registerButton">
 
+        アカウント作成
 
-<h1>✨ BitWorld ID作成</h1>
+    </button>
 
+    <button id="backLoginButton">
 
-<input id="newUser"
-placeholder="ユーザー名">
+        戻る
 
-
-<input id="newPass"
-type="password"
-placeholder="パスワード">
-
-
-<button onclick="register()">
-作成
-</button>
-
-
-<button onclick="backLogin()">
-戻る
-</button>
-
+    </button>
 
 </div>
 
+<!-- ===========================
+ホーム
+=========================== -->
 
+<div id="homeScreen"
+     class="screen hidden">
 
+    <h1>BitWorld</h1>
 
-<div class="box hidden" id="home">
+    <div class="profile">
 
+        <div id="playerIcon">
 
-<h1>🌎 BitWorld</h1>
+            😀
+        </div>
 
+        <h2 id="playerNickname">
 
-<div class="profile">
+            プレイヤー
 
+        </h2>
 
-<div id="icon">
-😀
-</div>
+        <p id="playerID">
 
+            BW-000000
 
-<h2 id="nickname">
-</h2>
+        </p>
 
+        <p>
 
-<p id="userid"></p>
+            💎
 
+            <span id="coinText">
 
-<p>
-💎 <span id="coins"></span>
-</p>
+                100
 
+            </span>
 
-</div>
+            Crystal Coin
 
+        </p>
 
+    </div>
 
-<h3>
-アイコン変更
-</h3>
+    <button id="worldButton">
 
+        🌍 ワールド
 
-<button onclick="changeIcon('😀')">
-😀
-</button>
+    </button>
 
-<button onclick="changeIcon('🤖')">
-🤖
-</button>
+    <button id="shopButton">
 
-<button onclick="changeIcon('💎')">
-💎
-</button>
+        🛒 ショップ
 
+    </button>
 
+    <button id="inventoryButton">
 
-<input id="nicknameInput"
-placeholder="新しい名前">
+        🎒 インベントリ
 
+    </button>
 
-<button onclick="changeNickname()">
-ニックネーム変更
-</button>
+    <button id="settingButton">
 
+        ⚙️ 設定
 
+    </button>
 
-<button onclick="openShop()">
-🛒 クリスタルショップ
-</button>
+    <button id="logoutButton">
 
+        🚪 ログアウト
 
-
-<button onclick="logout()">
-ログアウト
-</button>
-
-
-</div>
-
-
-
-
-
-<div class="box hidden" id="shop">
-
-
-<h1>🛒 Shop</h1>
-
-
-<h3>
-💎 <span id="shopCoins"></span>
-</h3>
-
-
-<div id="items"></div>
-
-
-<button onclick="closeShop()">
-戻る
-</button>
-
+    </button>
 
 </div>
 
+<!-- ===========================
+ワールド一覧
+=========================== -->
 
+<div id="worldScreen"
+     class="screen hidden">
+
+    <h1>
+
+        🌍 My Worlds
+
+    </h1>
+
+    <div id="worldList">
+
+    </div>
+
+    <button id="createWorldButton">
+
+        ＋ ワールド作成
+
+    </button>
+
+    <button id="worldBackButton">
+
+        戻る
+
+    </button>
+
+</div>
+
+<!-- ===========================
+ワールド作成
+=========================== -->
+
+<div id="createWorldScreen"
+     class="screen hidden">
+
+    <h1>
+
+        新しいワールド
+
+    </h1>
+
+    <input
+        id="worldName"
+        type="text"
+        placeholder="ワールド名">
+
+    <input
+        id="worldSeed"
+        type="text"
+        placeholder="シード（空欄で自動）">
+
+    <select id="worldBiome">
+
+        <option value="normal">
+
+            🌱 ノーマル
+
+        </option>
+
+        <option value="forest">
+
+            🌲 森林
+
+        </option>
+
+        <option value="desert">
+
+            🏜 砂漠
+
+        </option>
+
+        <option value="crystal">
+
+            💎 クリスタル
+
+        </option>
+
+    </select>
+
+    <select id="worldDifficulty">
+
+        <option>
+
+            Easy
+
+        </option>
+
+        <option selected>
+
+            Normal
+
+        </option>
+
+        <option>
+
+            Hard
+
+        </option>
+
+    </select>
+
+    <button id="createWorld">
+
+        作成
+
+    </button>
+
+    <button id="cancelWorld">
+
+        キャンセル
+
+    </button>
+
+</div>
+
+<!-- ===========================
+ショップ
+=========================== -->
+
+<div id="shopScreen"
+     class="screen hidden">
+
+    <h1>
+
+        🛒 Crystal Shop
+
+    </h1>
+
+    <p>
+
+        💎
+
+        <span id="shopCoinText">
+
+            100
+
+        </span>
+
+    </p>
+
+    <div id="shopList">
+
+    </div>
+
+    <button id="shopBackButton">
+
+        戻る
+
+    </button>
+
+</div>
+
+<!-- ===========================
+設定
+=========================== -->
+
+<div id="settingScreen"
+     class="screen hidden">
+
+    <h1>
+
+        ⚙️ Settings
+
+    </h1>
+
+    <label>
+
+        ニックネーム
+
+    </label>
+
+    <input
+        id="nicknameInput"
+        type="text">
+
+    <label>
+
+        アイコン
+
+    </label>
+
+    <div id="iconList">
+
+        <button class="iconButton">😀</button>
+
+        <button class="iconButton">🤖</button>
+
+        <button class="iconButton">👾</button>
+
+        <button class="iconButton">💎</button>
+
+        <button class="iconButton">🌍</button>
+
+    </div>
+
+    <button id="saveProfileButton">
+
+        保存
+
+    </button>
+
+    <button id="settingBackButton">
+
+        戻る
+
+    </button>
+
+</div>
 
 <script src="script.js"></script>
 
-
 </body>
-
 </html>
