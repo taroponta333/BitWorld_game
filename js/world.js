@@ -460,15 +460,14 @@ function renderWorldList(){
 
 function openWorld(id){
 
-    console.log(
-
-        "Open",
-
+    // 現在プレイするワールドIDを保存
+    localStorage.setItem(
+        "BitWorldCurrentWorld",
         id
-
     );
 
-    // Part2でCanvasを表示
+    // game.htmlへ移動
+    window.location.href = "game.html";
 
 }
 
