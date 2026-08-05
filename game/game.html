@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>BitWorld</title>
+
+<link rel="stylesheet" href="game.css">
+
+<!-- PixiJS -->
+<script src="https://cdn.jsdelivr.net/npm/pixi.js@8/dist/pixi.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="gameUI">
+
+    <div id="topBar">
+
+        <div id="worldName">
+            🌍 BitWorld
+        </div>
+
+        <div id="coins">
+            💎 100
+        </div>
+
+        <button id="menuButton">
+            ☰
+        </button>
+
+    </div>
+
+    <div id="gameContainer"></div>
+
+    <div id="hotbar">
+
+        <button class="slot">
+            🟩
+        </button>
+
+        <button class="slot">
+            🌳
+        </button>
+
+        <button class="slot">
+            🪨
+        </button>
+
+        <button class="slot">
+            💧
+        </button>
+
+        <button class="slot">
+            ⚡
+        </button>
+
+        <button class="slot">
+            🔧
+        </button>
+
+    </div>
+
+</div>
+
+<!-- スマホ操作 -->
+
+<div id="mobileControls">
+
+    <div id="joystick">
+
+        <button id="up">▲</button>
+
+        <div>
+
+            <button id="left">◀</button>
+
+            <button id="down">▼</button>
+
+            <button id="right">▶</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="game.js"></script>
+
+</body>
+
+</html>
