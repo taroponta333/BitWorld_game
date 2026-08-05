@@ -481,3 +481,23 @@ console.log(
 "✅ world.js Part1"
 
 );
+
+/*=========================================
+ボタン登録
+=========================================*/
+
+window.addEventListener("load", () => {
+
+    const createWorldButton =
+        document.getElementById("createWorldButton");
+
+    if(createWorldButton){
+
+        createWorldButton.addEventListener(
+            "click",
+            createNewWorld
+        );
+
+    }
+
+});
