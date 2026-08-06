@@ -1041,3 +1041,64 @@ console.log(
 "✅ account.js Part2 後半 Loaded"
 
 );
+
+/*=========================================
+ホーム画面ボタン
+=========================================*/
+
+window.addEventListener("load", () => {
+
+    function showScreen(id){
+
+        document.querySelectorAll(".screen").forEach(screen=>{
+            screen.classList.add("hidden");
+        });
+
+        document.getElementById(id).classList.remove("hidden");
+    }
+
+    document.getElementById("worldButton")?.addEventListener("click",()=>{
+
+        renderWorldList();
+
+        showScreen("worldScreen");
+
+    });
+
+    document.getElementById("shopButton")?.addEventListener("click",()=>{
+
+        showScreen("shopScreen");
+
+    });
+
+    document.getElementById("inventoryButton")?.addEventListener("click",()=>{
+
+        alert("インベントリは開発中です");
+
+    });
+
+    document.getElementById("settingButton")?.addEventListener("click",()=>{
+
+        showScreen("settingScreen");
+
+    });
+
+    document.getElementById("worldBackButton")?.addEventListener("click",()=>{
+
+        showScreen("homeScreen");
+
+    });
+
+    document.getElementById("shopBackButton")?.addEventListener("click",()=>{
+
+        showScreen("homeScreen");
+
+    });
+
+    document.getElementById("settingBackButton")?.addEventListener("click",()=>{
+
+        showScreen("homeScreen");
+
+    });
+
+});
