@@ -1,127 +1,658 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>BitWorld</title>
 
-    <link rel="stylesheet" href="style.css">
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+    <!-- アイコン -->
+    <link
+        rel="icon"
+        href="assets/icon.png">
+
+    <meta
+        name="theme-color"
+        content="#4CAF50">
+
 </head>
 
 <body>
 
-<!-- ===========================
-起動画面
-=========================== -->
+<!-- ===================================== -->
+<!-- Loading Screen                        -->
+<!-- ===================================== -->
 
-<div id="loadingScreen" class="screen">
+<div
+    id="loadingScreen"
+    class="screen">
 
-    <h1 class="logo">🌍 BitWorld</h1>
+    <div class="loadingContainer">
 
-    <p>Loading...</p>
+        <h1 class="logo">
 
-    <div class="loadingBar">
-        <div id="loadingProgress"></div>
+            🌍 BitWorld
+
+        </h1>
+
+        <p class="version">
+
+            Version 0.1 Alpha
+
+        </p>
+
+        <p id="loadingText">
+
+            Loading...
+
+        </p>
+
+        <div class="loadingBar">
+
+            <div
+                id="loadingProgress">
+
+            </div>
+
+        </div>
+
+        <p
+            id="loadingPercent">
+
+            0%
+
+        </p>
+
     </div>
 
 </div>
 
-<!-- ===========================
-ログイン画面
-=========================== -->
+<!-- ===================================== -->
+<!-- Login Screen                          -->
+<!-- ===================================== -->
+    <!-- ===================================== -->
+<!-- Login Screen                          -->
+<!-- ===================================== -->
 
-<div id="loginScreen" class="screen hidden">
+<div
+    id="loginScreen"
+    class="screen hidden">
 
-    <h1>BitWorld</h1>
+    <div class="card">
 
-    <input
-        id="loginUsername"
-        type="text"
-        placeholder="ユーザー名">
+        <h1>
 
-    <input
-        id="loginPassword"
-        type="password"
-        placeholder="パスワード">
+            🌍 BitWorld
 
-    <button id="loginButton">
-        ログイン
-    </button>
-
-    <button id="openRegisterButton">
-        新規登録
-    </button>
-
-</div>
-
-<!-- ===========================
-新規登録
-=========================== -->
-
-<div id="registerScreen"
-     class="screen hidden">
-
-    <h1>Create Account</h1>
-
-    <input
-        id="registerUsername"
-        type="text"
-        placeholder="ユーザー名">
-
-    <input
-        id="registerPassword"
-        type="password"
-        placeholder="パスワード">
-
-    <button id="registerButton">
-
-        アカウント作成
-
-    </button>
-
-    <button id="backLoginButton">
-
-        戻る
-
-    </button>
-
-</div>
-
-<!-- ===========================
-ホーム
-=========================== -->
-
-<div id="homeScreen"
-     class="screen hidden">
-
-    <h1>BitWorld</h1>
-
-    <div class="profile">
-
-        <div id="playerIcon">
-
-            😀
-        </div>
-
-        <h2 id="playerNickname">
-
-            プレイヤー
-
-        </h2>
-
-        <p id="playerID">
-
-            BW-000000
-
-        </p>
+        </h1>
 
         <p>
 
+            ログインして冒険を始めよう！
+
+        </p>
+
+        <input
+            id="loginUsername"
+            type="text"
+            placeholder="ユーザー名">
+
+        <input
+            id="loginPassword"
+            type="password"
+            placeholder="パスワード">
+
+        <button
+            id="loginButton"
+            class="mainButton">
+
+            🔑 ログイン
+
+        </button>
+
+        <button
+            id="openRegisterButton"
+            class="subButton">
+
+            🆕 新規登録
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- Register Screen                       -->
+<!-- ===================================== -->
+
+<div
+    id="registerScreen"
+    class="screen hidden">
+
+    <div class="card">
+
+        <h1>
+
+            🆕 アカウント作成
+
+        </h1>
+
+        <p>
+
+            BitWorldへようこそ！
+
+        </p>
+
+        <input
+            id="registerUsername"
+            type="text"
+            maxlength="20"
+            placeholder="ユーザー名">
+
+        <input
+            id="registerPassword"
+            type="password"
+            maxlength="64"
+            placeholder="パスワード">
+
+        <input
+            id="registerPassword2"
+            type="password"
+            maxlength="64"
+            placeholder="パスワード（確認）">
+
+        <label class="checkbox">
+
+            <input
+                id="agreeTerms"
+                type="checkbox">
+
+            利用規約に同意します
+
+        </label>
+
+        <button
+            id="registerButton"
+            class="mainButton">
+
+            ✅ アカウント作成
+
+        </button>
+
+        <button
+            id="backLoginButton"
+            class="subButton">
+
+            ← ログインへ戻る
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- Home Screen                           -->
+<!-- ===================================== -->
+    <!-- ===================================== -->
+<!-- Home Screen                           -->
+<!-- ===================================== -->
+
+<div
+    id="homeScreen"
+    class="screen hidden">
+
+    <div class="homeContainer">
+
+        <!-- プロフィール -->
+
+        <div class="profileCard">
+
+            <div
+                id="playerIcon"
+                class="playerIcon">
+
+                😀
+
+            </div>
+
+            <div class="profileInfo">
+
+                <h2
+                    id="playerNickname">
+
+                    プレイヤー
+
+                </h2>
+
+                <p
+                    id="playerID">
+
+                    BW-000000
+
+                </p>
+
+                <p class="coinText">
+
+                    💎
+
+                    <span
+                        id="coinText">
+
+                        100
+
+                    </span>
+
+                    Crystal Coin
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- メニュー -->
+
+        <div class="menuGrid">
+
+            <button
+                id="worldButton"
+                class="menuButton">
+
+                🌍
+
+                <span>
+
+                    ワールド
+
+                </span>
+
+            </button>
+
+            <button
+                id="inventoryButton"
+                class="menuButton">
+
+                🎒
+
+                <span>
+
+                    インベントリ
+
+                </span>
+
+            </button>
+
+            <button
+                id="shopButton"
+                class="menuButton">
+
+                🛒
+
+                <span>
+
+                    ショップ
+
+                </span>
+
+            </button>
+
+            <button
+                id="settingButton"
+                class="menuButton">
+
+                ⚙️
+
+                <span>
+
+                    設定
+
+                </span>
+
+            </button>
+
+        </div>
+
+        <!-- クイック情報 -->
+
+        <div class="statusCard">
+
+            <h3>
+
+                📢 お知らせ
+
+            </h3>
+
+            <p id="newsText">
+
+                BitWorldへようこそ！
+
+            </p>
+
+        </div>
+
+        <!-- バージョン -->
+
+        <div class="versionCard">
+
+            Version 0.1 Alpha
+
+        </div>
+
+        <!-- ログアウト -->
+
+        <button
+            id="logoutButton"
+            class="dangerButton">
+
+            🚪 ログアウト
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- World Screen                          -->
+<!-- ===================================== -->
+    <!-- ===================================== -->
+<!-- World Screen                          -->
+<!-- ===================================== -->
+
+<div
+    id="worldScreen"
+    class="screen hidden">
+
+    <div class="worldContainer">
+
+        <h1>
+
+            🌍 My Worlds
+
+        </h1>
+
+        <div class="worldTopBar">
+
+            <button
+                id="createWorldButton"
+                class="mainButton">
+
+                ➕ 新しいワールド
+
+            </button>
+
+            <button
+                id="importWorldButton"
+                class="subButton">
+
+                📂 WorldCode読込
+
+            </button>
+
+        </div>
+
+        <div
+            id="worldList"
+            class="worldList">
+
+            <!-- JSで生成 -->
+
+        </div>
+
+        <div class="bottomBar">
+
+            <button
+                id="worldBackButton"
+                class="dangerButton">
+
+                ← ホームへ戻る
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- Create World Screen                   -->
+<!-- ===================================== -->
+
+<div
+    id="createWorldScreen"
+    class="screen hidden">
+
+    <div class="createWorldContainer">
+
+        <h1>
+
+            🌎 新しいワールド
+
+        </h1>
+
+        <input
+            id="worldName"
+            type="text"
+            maxlength="32"
+            placeholder="ワールド名">
+
+        <input
+            id="worldSeed"
+            type="text"
+            maxlength="32"
+            placeholder="シード（空欄でランダム）">
+
+        <label>
+
+            バイオーム
+
+        </label>
+
+        <select id="worldBiome">
+
+            <option value="normal">
+
+                🌱 ノーマル
+
+            </option>
+
+            <option value="forest">
+
+                🌲 森林
+
+            </option>
+
+            <option value="desert">
+
+                🏜️ 砂漠
+
+            </option>
+
+            <option value="snow">
+
+                ❄️ 雪原
+
+            </option>
+
+            <option value="crystal">
+
+                💎 クリスタル
+
+            </option>
+
+            <option value="volcano">
+
+                🌋 火山
+
+            </option>
+
+            <option value="sky">
+
+                ☁️ 空島
+
+            </option>
+
+        </select>
+
+        <label>
+
+            難易度
+
+        </label>
+
+        <select id="worldDifficulty">
+
+            <option value="peaceful">
+
+                😊 Peaceful
+
+            </option>
+
+            <option value="easy">
+
+                😀 Easy
+
+            </option>
+
+            <option
+                value="normal"
+                selected>
+
+                🙂 Normal
+
+            </option>
+
+            <option value="hard">
+
+                😈 Hard
+
+            </option>
+
+        </select>
+
+        <label>
+
+            ワールドタイプ
+
+        </label>
+
+        <select id="worldType">
+
+            <option value="survival">
+
+                ⛏️ サバイバル
+
+            </option>
+
+            <option value="creative">
+
+                🎨 クリエイター
+
+            </option>
+
+            <option value="debug">
+
+                🛠️ デバッグ
+
+            </option>
+
+        </select>
+
+        <label>
+
+            初期スポーン
+
+        </label>
+
+        <select id="spawnType">
+
+            <option value="random">
+
+                ランダム
+
+            </option>
+
+            <option value="village">
+
+                村
+
+            </option>
+
+            <option value="forest">
+
+                森
+
+            </option>
+
+            <option value="coast">
+
+                海岸
+
+            </option>
+
+        </select>
+
+        <div class="createButtons">
+
+            <button
+                id="createWorld"
+                class="mainButton">
+
+                🌍 作成
+
+            </button>
+
+            <button
+                id="cancelWorld"
+                class="dangerButton">
+
+                キャンセル
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- Shop Screen                           -->
+<!-- ===================================== -->
+    <!-- ===================================== -->
+<!-- Shop Screen                           -->
+<!-- ===================================== -->
+
+<div
+    id="shopScreen"
+    class="screen hidden">
+
+    <div class="shopContainer">
+
+        <h1>
+
+            🛒 Crystal Shop
+
+        </h1>
+
+        <p class="coinText">
+
             💎
 
-            <span id="coinText">
+            <span id="shopCoinText">
 
                 100
 
@@ -131,255 +662,368 @@
 
         </p>
 
-    </div>
+        <div
+            id="shopList"
+            class="shopGrid">
 
-    <button id="worldButton">
+            <!-- JSで生成 -->
 
-        🌍 ワールド
+        </div>
 
-    </button>
+        <button
+            id="shopBackButton"
+            class="dangerButton">
 
-    <button id="shopButton">
+            ← ホームへ戻る
 
-        🛒 ショップ
-
-    </button>
-
-    <button id="inventoryButton">
-
-        🎒 インベントリ
-
-    </button>
-
-    <button id="settingButton">
-
-        ⚙️ 設定
-
-    </button>
-
-    <button id="logoutButton">
-
-        🚪 ログアウト
-
-    </button>
-
-</div>
-
-<!-- ===========================
-ワールド一覧
-=========================== -->
-
-<div id="worldScreen"
-     class="screen hidden">
-
-    <h1>
-
-        🌍 My Worlds
-
-    </h1>
-
-    <div id="worldList">
+        </button>
 
     </div>
 
-    <button id="createWorldButton">
-
-        ＋ ワールド作成
-
-    </button>
-
-    <button id="worldBackButton">
-
-        戻る
-
-    </button>
-
 </div>
 
-<!-- ===========================
-ワールド作成
-=========================== -->
+<!-- ===================================== -->
+<!-- Inventory Screen                      -->
+<!-- ===================================== -->
 
-<div id="createWorldScreen"
-     class="screen hidden">
+<div
+    id="inventoryScreen"
+    class="screen hidden">
 
-    <h1>
+    <div class="inventoryContainer">
 
-        新しいワールド
+        <h1>
 
-    </h1>
+            🎒 Inventory
 
-    <input
-        id="worldName"
-        type="text"
-        placeholder="ワールド名">
+        </h1>
 
-    <input
-        id="worldSeed"
-        type="text"
-        placeholder="シード（空欄で自動）">
+        <div
+            id="inventoryGrid"
+            class="inventoryGrid">
 
-    <select id="worldBiome">
+            <!-- JS生成 -->
 
-        <option value="normal">
+        </div>
 
-            🌱 ノーマル
+        <button
+            id="inventoryBackButton"
+            class="dangerButton">
 
-        </option>
+            ← ホームへ戻る
 
-        <option value="forest">
-
-            🌲 森林
-
-        </option>
-
-        <option value="desert">
-
-            🏜 砂漠
-
-        </option>
-
-        <option value="crystal">
-
-            💎 クリスタル
-
-        </option>
-
-    </select>
-
-    <select id="worldDifficulty">
-
-        <option>
-
-            Easy
-
-        </option>
-
-        <option selected>
-
-            Normal
-
-        </option>
-
-        <option>
-
-            Hard
-
-        </option>
-
-    </select>
-
-    <button id="createWorld">
-
-        作成
-
-    </button>
-
-    <button id="cancelWorld">
-
-        キャンセル
-
-    </button>
-
-</div>
-
-<!-- ===========================
-ショップ
-=========================== -->
-
-<div id="shopScreen"
-     class="screen hidden">
-
-    <h1>
-
-        🛒 Crystal Shop
-
-    </h1>
-
-    <p>
-
-        💎
-
-        <span id="shopCoinText">
-
-            100
-
-        </span>
-
-    </p>
-
-    <div id="shopList">
+        </button>
 
     </div>
 
-    <button id="shopBackButton">
-
-        戻る
-
-    </button>
-
 </div>
 
-<!-- ===========================
-設定
-=========================== -->
+<!-- ===================================== -->
+<!-- Setting Screen                        -->
+<!-- ===================================== -->
 
-<div id="settingScreen"
-     class="screen hidden">
+<div
+    id="settingScreen"
+    class="screen hidden">
 
-    <h1>
+    <div class="settingContainer">
 
-        ⚙️ Settings
+        <h1>
 
-    </h1>
+            ⚙️ Settings
 
-    <label>
+        </h1>
 
-        ニックネーム
+        <!-- ===================== -->
+        <!-- プロフィール -->
+        <!-- ===================== -->
 
-    </label>
+        <h2>
 
-    <input
-        id="nicknameInput"
-        type="text">
+            👤 プロフィール
 
-    <label>
+        </h2>
 
-        アイコン
+        <label>
 
-    </label>
+            ニックネーム
 
-    <div id="iconList">
+        </label>
 
-        <button class="iconButton">😀</button>
+        <input
+            id="nicknameInput"
+            type="text"
+            maxlength="20">
 
-        <button class="iconButton">🤖</button>
+        <label>
 
-        <button class="iconButton">👾</button>
+            アイコン
 
-        <button class="iconButton">💎</button>
+        </label>
 
-        <button class="iconButton">🌍</button>
+        <div
+            id="iconList"
+            class="iconGrid">
+
+            <button class="iconButton">😀</button>
+            <button class="iconButton">🤖</button>
+            <button class="iconButton">👾</button>
+            <button class="iconButton">💎</button>
+            <button class="iconButton">🌍</button>
+            <button class="iconButton">🦊</button>
+            <button class="iconButton">🐱</button>
+            <button class="iconButton">🐧</button>
+
+        </div>
+
+        <hr>
+
+        <!-- ===================== -->
+        <!-- ゲーム設定 -->
+        <!-- ===================== -->
+
+        <h2>
+
+            🎮 ゲーム
+
+        </h2>
+
+        <label>
+
+            BGM
+
+        </label>
+
+        <input
+            id="bgmVolume"
+            type="range"
+            min="0"
+            max="100">
+
+        <label>
+
+            SE
+
+        </label>
+
+        <input
+            id="seVolume"
+            type="range"
+            min="0"
+            max="100">
+
+        <label>
+
+            FPS
+
+        </label>
+
+        <select
+            id="fpsSelect">
+
+            <option value="30">30 FPS</option>
+            <option value="60">60 FPS</option>
+            <option value="120">120 FPS</option>
+            <option value="0">無制限</option>
+
+        </select>
+
+        <label>
+
+            描画距離
+
+        </label>
+
+        <input
+            id="renderDistance"
+            type="range"
+            min="4"
+            max="16">
+
+        <label>
+
+            <input
+                id="showFPS"
+                type="checkbox">
+
+            FPS表示
+
+        </label>
+
+        <hr>
+
+        <!-- ===================== -->
+        <!-- データ管理 -->
+        <!-- ===================== -->
+
+        <h2>
+
+            💾 データ管理
+
+        </h2>
+
+        <button
+            id="exportSettingButton"
+            class="mainButton">
+
+            📤 設定を書き出す
+
+        </button>
+
+        <label
+            class="fileButton">
+
+            📥 設定を読み込む
+
+            <input
+                id="importSettingFile"
+                type="file"
+                accept=".json"
+                hidden>
+
+        </label>
+
+        <button
+            id="clearCacheButton"
+            class="subButton">
+
+            🗑 キャッシュ削除
+
+        </button>
+
+        <button
+            id="resetSettingButton"
+            class="dangerButton">
+
+            🔄 初期設定へ戻す
+
+        </button>
+
+        <hr>
+
+        <!-- ===================== -->
+        <!-- ボタン -->
+        <!-- ===================== -->
+
+        <button
+            id="saveProfileButton"
+            class="mainButton">
+
+            💾 保存
+
+        </button>
+
+        <button
+            id="settingBackButton"
+            class="dangerButton">
+
+            ← ホームへ戻る
+
+        </button>
 
     </div>
 
-    <button id="saveProfileButton">
-
-        保存
-
-    </button>
-
-    <button id="settingBackButton">
-
-        戻る
-
-    </button>
-
 </div>
 
+<!-- ===================================== -->
+<!-- Script                                -->
+<!-- ===================================== -->
+    <!-- ===================================== -->
+<!-- JavaScript                            -->
+<!-- ===================================== -->
+
+<!-- 暗号化 -->
 <script src="js/crypto.js"></script>
+
+<!-- アカウント -->
 <script src="js/account.js"></script>
+
+<!-- ワールド -->
 <script src="js/world.js"></script>
-    
+
+<!-- 設定 -->
+<script src="js/setting.js"></script>
+
+<!-- インベントリ -->
+<script src="js/inventory.js"></script>
+
+<!-- ショップ -->
+<script src="js/shop.js"></script>
+
+<!-- メイン -->
+<script src="js/main.js"></script>
+
+<!-- ===================================== -->
+<!-- 起動処理                              -->
+<!-- ===================================== -->
+
+<script>
+
+window.addEventListener("load",()=>{
+
+    console.log("🌍 BitWorld Boot");
+
+    const loading =
+        document.getElementById(
+            "loadingProgress"
+        );
+
+    const percent =
+        document.getElementById(
+            "loadingPercent"
+        );
+
+    let value = 0;
+
+    const timer = setInterval(()=>{
+
+        value++;
+
+        if(loading){
+
+            loading.style.width =
+                value + "%";
+
+        }
+
+        if(percent){
+
+            percent.textContent =
+                value + "%";
+
+        }
+
+        if(value>=100){
+
+            clearInterval(timer);
+
+            document
+                .getElementById(
+                    "loadingScreen"
+                )
+                .classList.add("hidden");
+
+            if(typeof autoLogin==="function"){
+
+                autoLogin();
+
+            }else{
+
+                document
+                    .getElementById(
+                        "loginScreen"
+                    )
+                    .classList.remove("hidden");
+
+            }
+
+        }
+
+    },15);
+
+});
+
+</script>
+
 </body>
 </html>
